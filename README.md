@@ -11,7 +11,7 @@ code-completion task.
 - [x] Single-head scaled dot-product attention (`attention.py`)
 - [x] Multi-head attention (`multi_head_attention.py`)
 - [x] Position-wise feed-forward network (`feed_forward.py`)
-- [ ] Residual connections + LayerNorm
+- [x] Residual connections + LayerNorm (`add_norm.py`)
 - [ ] Encoder layer + encoder stack
 - [ ] Masking (padding + causal)
 - [ ] Decoder layer + decoder stack
