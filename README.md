@@ -12,7 +12,7 @@ code-completion task.
 - [x] Multi-head attention (`multi_head_attention.py`)
 - [x] Position-wise feed-forward network (`feed_forward.py`)
 - [x] Residual connections + LayerNorm (`add_norm.py`)
-- [ ] Encoder layer + encoder stack
+- [x] Encoder layer + encoder stack (`encoder.py`)
 - [ ] Masking (padding + causal)
 - [ ] Decoder layer + decoder stack
 - [ ] Embeddings + output projection
