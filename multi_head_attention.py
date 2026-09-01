@@ -22,8 +22,9 @@ class MultiHeadAttention(nn.Module):
         # TODO 3: define the final output projection W_o: Linear(d_model, d_model)
         self.W_o = nn.Linear(d_model, d_model)
 
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
+    def forward(self, x: torch.Tensor, mask: torch.Tensor = None) -> torch.Tensor:
         # x shape: (batch, seq_len, d_model)
+        # mask shape (if provided): broadcastable against (batch, num_heads, seq_len, seq_len)
         batch, seq_len, d_model = x.shape
 
         # TODO 4: compute Q, K, V via W_q, W_k, W_v
@@ -43,7 +44,7 @@ class MultiHeadAttention(nn.Module):
         # (imported above) — same function you already verified works on 4D
         # (batch, num_heads, seq_len, d_k) tensors, no need to reimplement the math
         # out shape: (batch, num_heads, seq_len, d_k)
-        out = scaled_dot_product_attention(Q, K, V, self.d_k)
+        out = scaled_dot_product_attention(Q, K, V, self.d_k, mask)
 
 
         # TODO 7: merge heads back

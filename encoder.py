@@ -18,11 +18,15 @@ class EncoderLayer(nn.Module):
         self.add_norm1 = AddNorm(d_model)
         self.add_norm2 = AddNorm(d_model)
 
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
+    def forward(self, x: torch.Tensor, mask: torch.Tensor = None) -> torch.Tensor:
         # x shape: (batch, seq_len, d_model)
+        # mask: padding mask, broadcastable against (batch, num_heads, seq_len, seq_len)
 
         # TODO 4: x = self.add_norm1(x, self.self_attn)
-        x = self.add_norm1(x, self.self_attn)
+        # self_attn now optionally takes a mask, but AddNorm's sublayer(x) call
+        # only passes one arg — use a lambda closure to thread mask through:
+        # self.add_norm1(x, lambda t: self.self_attn(t, mask))
+        x = self.add_norm1(x, lambda t: self.self_attn(t, mask))
         # TODO 5: x = self.add_norm2(x, self.feed_forward)
         x = self.add_norm2(x, self.ffd)
         # TODO 6: return x
@@ -38,12 +42,12 @@ class Encoder(nn.Module):
         # num_layers times in the list — each needs its own weights)
         self.layers  = nn.ModuleList(EncoderLayer(d_model, num_heads, d_ff) for _ in range(num_layers))
 
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
+    def forward(self, x: torch.Tensor, mask: torch.Tensor = None) -> torch.Tensor:
         # x shape: (batch, seq_len, d_model)
 
-        # TODO 8: pass x through each layer in self.layers in sequence, return the result
+        # TODO 8: pass x (and mask) through each layer in self.layers in sequence, return the result
         for layer in self.layers:
-            x = layer(x)
+            x = layer(x, mask)
         return x
 
 

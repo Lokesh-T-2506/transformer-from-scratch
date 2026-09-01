@@ -13,7 +13,7 @@ code-completion task.
 - [x] Position-wise feed-forward network (`feed_forward.py`)
 - [x] Residual connections + LayerNorm (`add_norm.py`)
 - [x] Encoder layer + encoder stack (`encoder.py`)
-- [ ] Masking (padding + causal)
+- [x] Masking (padding + causal) (`masks.py`)
 - [ ] Decoder layer + decoder stack
 - [ ] Embeddings + output projection
 - [ ] Full model assembly
