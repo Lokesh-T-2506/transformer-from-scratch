@@ -24,9 +24,12 @@ class EncoderLayer(nn.Module):
 
         # TODO 4: x = self.add_norm1(x, self.self_attn)
         # self_attn now optionally takes a mask, but AddNorm's sublayer(x) call
-        # only passes one arg — use a lambda closure to thread mask through:
-        # self.add_norm1(x, lambda t: self.self_attn(t, mask))
-        x = self.add_norm1(x, lambda t: self.self_attn(t, mask))
+        # only passes one arg — use a lambda closure to thread mask through.
+        # NOTE: self_attn's signature is now (query_input, key_value_input=None, mask=None) --
+        # mask must be passed as a KEYWORD arg here, since a bare second positional
+        # arg would now land in key_value_input instead:
+        # self.add_norm1(x, lambda t: self.self_attn(t, mask=mask))
+        x = self.add_norm1(x, lambda t: self.self_attn(t, mask=mask))
         # TODO 5: x = self.add_norm2(x, self.feed_forward)
         x = self.add_norm2(x, self.ffd)
         # TODO 6: return x

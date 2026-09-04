@@ -14,7 +14,7 @@ code-completion task.
 - [x] Residual connections + LayerNorm (`add_norm.py`)
 - [x] Encoder layer + encoder stack (`encoder.py`)
 - [x] Masking (padding + causal) (`masks.py`)
-- [ ] Decoder layer + decoder stack
+- [x] Decoder layer + decoder stack (`decoder.py`)
 - [ ] Embeddings + output projection
 - [ ] Full model assembly
 - [ ] Toy training loop (Colab GPU, code-completion corpus)
