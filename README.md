@@ -16,7 +16,7 @@ code-completion task.
 - [x] Masking (padding + causal) (`masks.py`)
 - [x] Decoder layer + decoder stack (`decoder.py`)
 - [x] Embeddings + output projection (`embeddings.py`)
-- [ ] Full model assembly
+- [x] Full model assembly (`transformer.py`)
 - [ ] Toy training loop (Colab GPU, code-completion corpus)
 
 ## Setup
