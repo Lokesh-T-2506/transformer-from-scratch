@@ -17,7 +17,12 @@ code-completion task.
 - [x] Decoder layer + decoder stack (`decoder.py`)
 - [x] Embeddings + output projection (`embeddings.py`)
 - [x] Full model assembly (`transformer.py`)
-- [ ] Toy training loop (Colab GPU, code-completion corpus)
+- [x] Toy training loop (`tokenizer.py`, `dataset.py`, `train.py`)
+
+All core architecture components are built and verified. Current training setup uses a tiny
+synthetic 5-pair corpus and a whitespace-level tokenizer to validate the pipeline end-to-end
+(loss drops from ~75.8 to ~0.05 over 50 epochs). Next: swap in a real Python corpus and train
+on Colab GPU (this machine has no CUDA-capable GPU).
 
 ## Setup
 
